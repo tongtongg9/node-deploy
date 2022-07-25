@@ -9,7 +9,7 @@ services:
         env_file:
             - ./api/.env.example
         ports:
-            - '5003:5003'
+            - '3000:3000'
         restart: unless-stopped
         networks:
             - web_network

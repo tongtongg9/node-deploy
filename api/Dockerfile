@@ -12,7 +12,7 @@ RUN npm i
 # Copy file (. . => all file) from host to container
 COPY . /usr/src/app/
 
-EXPOSE 5003
+EXPOSE 3000
 
 # Default Command
 CMD [ "npm", "start" ]
