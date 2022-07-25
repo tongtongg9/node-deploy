@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+    node-app:
+        build:
+            context: ./api
+        container_name: nodeserver
+        hostname: nodeserver
+        env_file:
+            - ./api/.env.example
+        ports:
+            - '5003:5003'
+        restart: unless-stopped
+        networks:
+            - web_network
+    nginx:
+        build:
+            context: ./nginx
+        container_name: nginx
+        restart: unless-stopped
+        ports:
+            - '80:80'
+        depends_on:
+            - node-app
+        networks:
+            - web_network
+
+networks:
+    web_network:
+        name: test-api
+        driver: bridge
