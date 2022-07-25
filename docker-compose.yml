@@ -9,22 +9,19 @@ services:
             - ./api/.env.example
         ports:
             - '3000:3000'
-        restart: unless-stopped
         networks:
-            - web_network
+            - nginx-proxy
     nginx:
         build:
             context: ./nginx
         container_name: nginx
-        restart: unless-stopped
         ports:
             - '80:80'
         depends_on:
             - node-app
         networks:
-            - web_network
+            - nginx-proxy
 
 networks:
-    web_network:
-        name: test-api
-        driver: bridge
+    nginx-proxy:
+        external: true
